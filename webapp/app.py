@@ -12,7 +12,7 @@ def home():
 def test_function():
 
     try:
-        response = requests.get("http://localhost:7071/api/GetServerTime")
+        response = requests.get("https://sba-function-olcito-h5a3gudjcjefazc5.swedencentral-01.azurewebsites.net/api/GetServerTime")
         return jsonify(response.json())
 
     except Exception as e:
