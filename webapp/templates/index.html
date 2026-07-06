@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Build Automation Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <main class="container">
+        <section class="card">
+            <div class="badge">Software Build Automation Tools</div>
+
+            <h1>Cloud Deployment Project</h1>
+
+            <p class="subtitle">
+                A Flask web application prepared for deployment with Azure Web App,
+                Azure Functions, GitHub Actions, and automated build workflow.
+            </p>
+
+            <div class="status-grid">
+                <div class="status-box">
+                    ✅
+                    <strong>Flask Web App</strong>
+                    <span>Running locally</span>
+                </div>
+
+                <div class="status-box">
+                    ⚙️
+                    <strong>Azure Function</strong>
+                    <span>Ready to connect</span>
+                </div>
+
+                <div class="status-box">
+                    🚀
+                    <strong>GitHub Actions</strong>
+                    <span>Automation ready</span>
+                </div>
+            </div>
+
+            <p><strong>Student:</strong> Olcayto Koruk</p>
+
+            <button onclick="testFunction()">Test Azure Function</button>
+
+<div id="result" class="result">
+    <strong id="result-status"></strong>
+    <p id="result-message"></p>
+    <p><strong>Student:</strong> <span id="result-student"></span></p>
+    <p><strong>Course:</strong> <span id="result-course"></span></p>
+    <p><strong>Server Time:</strong> <span id="result-time"></span></p>
+</div>
+        </section>
+    </main>
+
+    <script>
+    async function testFunction() {
+        const resultBox = document.getElementById("result");
+
+        resultBox.style.display = "block";
+        document.getElementById("result-status").innerText = "Loading...";
+        document.getElementById("result-message").innerText = "";
+        document.getElementById("result-student").innerText = "";
+        document.getElementById("result-course").innerText = "";
+        document.getElementById("result-time").innerText = "";
+
+        try {
+            const response = await fetch("/test-function");
+            const data = await response.json();
+
+            document.getElementById("result-status").innerText = "Status: " + data.status;
+            document.getElementById("result-message").innerText = data.message;
+            document.getElementById("result-student").innerText = data.student;
+            document.getElementById("result-course").innerText = data.course;
+            document.getElementById("result-time").innerText = data.server_time;
+        } catch (error) {
+            document.getElementById("result-status").innerText = "Status: Error";
+            document.getElementById("result-message").innerText = error;
+        }
+    }
+</script>
+
+</body>
+</html>
