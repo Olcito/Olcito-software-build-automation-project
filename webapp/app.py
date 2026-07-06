@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-import requests
+
 
 app = Flask(__name__)
 
@@ -10,6 +10,10 @@ def home():
 
 @app.route("/test-function")
 def test_function():
+    return jsonify({
+        "status": "success",
+        "message": "Web app is running successfully"
+    })
 
     try:
         response = requests.get("https://sba-function-olcito-h5a3gudjcjefazc5.swedencentral-01.azurewebsites.net/api/GetServerTime")
